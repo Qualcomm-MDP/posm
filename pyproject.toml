@@ -1,0 +1,15 @@
+[tool.ruff]
+# Set the maximum line length
+line-length = 100
+# Assume Python 3.11
+target-version = "py311"
+
+[tool.ruff.lint]
+# E: pycodestyle errors, F: Pyflakes (syntax errors), I: isort (import sorting)
+select = ["E", "F", "I"]
+
+[tool.pytest.ini_options]
+# Define where the test suite lives
+testpaths = ["tests"]
+# Add detailed output to the test logs
+addopts = "-v"
