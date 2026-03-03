@@ -1,2 +1,5 @@
 ruff
 pytest
+geopandas
+shapely
+dotenv
