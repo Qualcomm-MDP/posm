@@ -1,8 +1,9 @@
 import os
-import requests
 import time
 from pathlib import Path
-from typing import Dict, Any, List, Optional
+from typing import Any, Dict, List, Optional
+
+import requests
 
 OVERPASS_URL = "https://overpass-api.de/api/interpreter"
 MAPILLARY_URL = "https://graph.mapillary.com/images"
@@ -46,7 +47,10 @@ def fetch_mapillary_metadata(
     headers = {"Authorization": f"OAuth {token}"}
     s, w, n, e = (lat - buffer, lon - buffer, lat + buffer, lon + buffer)
     bbox = f"{w},{s},{e},{n}"
-    fields = "id,thumb_original_url,computed_geometry,computed_compass_angle,camera_parameters,captured_at,sequence"
+    fields = (
+        "id,thumb_original_url,computed_geometry,computed_compass_angle,"
+        "camera_parameters,captured_at,sequence"
+    )
     url = f"{MAPILLARY_URL}?bbox={bbox}&fields={fields}"
 
     try:

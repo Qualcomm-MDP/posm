@@ -1,18 +1,18 @@
 from dataclasses import dataclass
-from typing import Any, Dict, List, Optional, Tuple
 from datetime import datetime, timezone
 from pathlib import Path
+from typing import Any, Dict, List, Optional, Tuple
 
-from src.utils.spatial_math import (
-    point_to_segment_distance_m,
-    bearing_deg,
-    wrap_angle_deg,
-    angle_diff_deg,
-    point_in_polygon_with_holes,
-    haversine_m,
-)
-from src.ingestion.osm_parser import extract_osm_buildings
 from src.ingestion.api_client import download_thumbnail
+from src.ingestion.osm_parser import extract_osm_buildings
+from src.utils.spatial_math import (
+    angle_diff_deg,
+    bearing_deg,
+    haversine_m,
+    point_in_polygon_with_holes,
+    point_to_segment_distance_m,
+    wrap_angle_deg,
+)
 
 
 @dataclass

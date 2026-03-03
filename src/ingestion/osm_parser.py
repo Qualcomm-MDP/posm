@@ -1,5 +1,6 @@
-from typing import Any, Dict, List, Tuple, Optional
-from src.utils.spatial_math import clean_polygon_latlon, polygon_area_m2, point_in_polygon
+from typing import Any, Dict, List, Optional, Tuple
+
+from src.utils.spatial_math import clean_polygon_latlon, point_in_polygon, polygon_area_m2
 
 
 def parse_height_m(tags: Dict[str, Any]) -> Optional[float]:

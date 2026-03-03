@@ -1,5 +1,5 @@
 import math
-from typing import List, Tuple, Optional
+from typing import List, Optional, Tuple
 
 
 def haversine_m(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
