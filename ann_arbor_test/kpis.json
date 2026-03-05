@@ -1,0 +1,18 @@
+{
+    "overall_model_quality_score": 0.0,
+    "overall_texture_quality": {
+        "raw_counts": {
+            "High confidence": 0,
+            "Low confidence": 0,
+            "Occluded": 0,
+            "Missing": 198
+        },
+        "percentages": {
+            "High confidence": 0.0,
+            "Low confidence": 0.0,
+            "Occluded": 0.0,
+            "Missing": 100.0
+        }
+    },
+    "overall_3d_model_to_texture_correlation": 0.0
+}

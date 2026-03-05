@@ -1,7 +1,7 @@
 from pathlib import Path
 from typing import Any, Dict
 
-from posm.src.ingestion.spatial_joiner import spatial_join_data
+from .spatial_joiner import spatial_join_data
 
 from .api_client import fetch_mapillary_metadata, fetch_osm_buildings
 
