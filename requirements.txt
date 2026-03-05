@@ -1,5 +1,12 @@
 ruff
 pytest
 geopandas
+python-dotenv
+trimesh
 shapely
-dotenv
+scipy
+opencv-python
+Pillow
+requests
+networkx
+mapbox-earcut
