@@ -1,9 +1,11 @@
-import trimesh
-import numpy as np
 from pathlib import Path
-from typing import Dict, Any, List
+from typing import Any, Dict, List
+
+import numpy as np
+import trimesh
 
 SCALE = 5
+
 
 def generate_plane(height: float, width: float):
     corners = [
@@ -15,6 +17,7 @@ def generate_plane(height: float, width: float):
     faces = np.array([[0, 1, 2, 3]])
     plane = trimesh.Trimesh(vertices=corners, faces=faces)
     return plane, corners, faces
+
 
 def initialize_plane(min_lat: float, min_lon: float, max_lat: float, max_lon: float):
     max_lat_scaled = int(max_lat * (10**SCALE))
@@ -28,6 +31,7 @@ def initialize_plane(min_lat: float, min_lon: float, max_lat: float, max_lon: fl
     plane, corners, faces = generate_plane(delta_lat, delta_long)
     return plane, corners, faces
 
+
 def get_corners(footprint_latlon: List, min_lat: float, min_lon: float):
     corners = []
     for point in footprint_latlon:
@@ -39,6 +43,7 @@ def get_corners(footprint_latlon: List, min_lat: float, min_lon: float):
 
         corners.append([local_i, local_j])
     return corners
+
 
 def get_lines(corners: List, loop: bool = True):
     lines = []
@@ -55,7 +60,10 @@ def get_lines(corners: List, loop: bool = True):
         lines.append(trimesh.path.entities.Line([end, 0]))
     return lines
 
-def build_scene(ingestion_data: Dict[str, Any], output_dir: str = "output_meshes") -> trimesh.Trimesh:
+
+def build_scene(
+    ingestion_data: Dict[str, Any], output_dir: str = "output_meshes"
+) -> trimesh.Trimesh:
     """Takes ingested OSM data and builds 3D extruded building meshes."""
     bbox = ingestion_data.get("bbox_south_west_north_east", [0, 0, 0, 0])
     min_lat, min_lon, max_lat, max_lon = bbox[0], bbox[1], bbox[2], bbox[3]
@@ -88,21 +96,20 @@ def build_scene(ingestion_data: Dict[str, Any], output_dir: str = "output_meshes
         mesh = path.extrude(height=height)
 
         if isinstance(mesh, list):
-            mesh = trimesh.util.concatenate([
-                m.to_mesh() if hasattr(m, "to_mesh") else m
-                for m in mesh
-            ])
+            mesh = trimesh.util.concatenate(
+                [m.to_mesh() if hasattr(m, "to_mesh") else m for m in mesh]
+            )
         else:
             if hasattr(mesh, "to_mesh"):
                 mesh = mesh.to_mesh()
 
-        mesh.export(str(out_path / f"{osm_id}.glb"), file_type='glb')
+        mesh.export(str(out_path / f"{osm_id}.glb"), file_type="glb")
         buildings.append(mesh)
 
         combined_mesh = trimesh.util.concatenate(buildings)
-        
+
         combined_mesh_path = out_path / "combined.glb"
         combined_mesh.export(str(combined_mesh_path))
         print(f"Saved combined building mesh to {combined_mesh_path}!")
-        
+
         return combined_mesh

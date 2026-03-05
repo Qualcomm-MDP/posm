@@ -1,9 +1,8 @@
 from pathlib import Path
 from typing import Any, Dict
 
-from .spatial_joiner import spatial_join_data
-
 from .api_client import fetch_mapillary_metadata, fetch_osm_buildings
+from .spatial_joiner import spatial_join_data
 
 
 def run_ingestion(
