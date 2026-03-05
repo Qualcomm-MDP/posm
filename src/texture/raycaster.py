@@ -37,7 +37,7 @@ def shoot_rays_for_image(
 
     height, width, _ = splatter_img.shape
 
-    MIN_LAT, MIN_LON, MAX_LAT, MAX_LON = bbox[0], bbox[1], bbox[2], bbox[3]
+    MIN_LAT, MIN_LON = bbox[0], bbox[1]
 
     # 2. Convert coordinates to local metric space
     converted_min_lon = int(MIN_LON * 10**SCALE)
